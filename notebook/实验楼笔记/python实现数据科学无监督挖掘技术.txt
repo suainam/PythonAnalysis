@@ -1,0 +1,5 @@
+sudo apt-get update
+sudo apt-get install python-dev
+sudo pip install --upgrade pip
+sudo pip install numpy scipy pandas mathplotlib sklearn
+sudo apt-get install python-tk

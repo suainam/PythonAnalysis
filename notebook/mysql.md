@@ -1,3 +1,11 @@
+# SQL
+## SQL是一种标准，但是为了与ANSI标准兼容，必须以相似的方式共同地支持一些主要的命令（select, update, delete, insert, where等）
+## RDBMS，Relational Database Management System, 关系型数据库管理系统，是SQL的基础，常见的：MS SQL Server，DB2，Oracle，Mysql和Access等
+
+
+
+
+
 #Hello.World
 show databases;
 use mysql;
