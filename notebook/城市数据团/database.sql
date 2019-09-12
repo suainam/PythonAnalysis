@@ -90,5 +90,19 @@ ALTER TABLE merged DROP 商品代码2;
 SET client_encoding TO 'utf8';
 \COPY merged TO 'C:\Users\17870\Desktop\结果数据.csv' WITH CSV HEADER;
 
+--数据的拆解
+--因为服务端是utf8，客户端是gbk，终端dos也是gbk，所以如果按照下面的输入，那么就无法在服务端进行搜索，会出现错误。但是如果将客户端修改成utf8，那么输入的时候也会返回错误。还没有想到好的解决办法 
+SELECT DISTINCT 商品名称 FROM merged;
 
+CREATE TABLE data_band AS SELECT 商品代码, COUNT(商品代码) FROM merged GROUP BY 商品代码;
 
+SELECT * FROM data_band LIMIT 10;
+
+DROP TABLE data_price;
+CREATE TABLE data_price AS SELECT 商品代码,含税单价 FROM merged WHERE 销售时间='2018/10/10';
+
+ALTER TABLE data_band ADD COLUMN price1010 numeric;
+UPDATE data_band SET price1010 = 含税单价 FROM data_price WHERE data_band.商品代码 = data_price.商品代码;
+DELETE FROM data_band WHERE price1010 IS NULL;
+
+--如何进行行列的转换，来获得不同商品代码在10/10~10/18期间的商品价格

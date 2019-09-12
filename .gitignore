@@ -16,3 +16,5 @@ deploy_key_rsa
 *.temp
 /vendor
 */.ipynb_checkpoints
+*/.sublime-project
+*/.sublime-workspace
